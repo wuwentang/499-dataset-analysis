@@ -2,11 +2,9 @@
 
 ## Team members
 
-Wu Wen Tang (ID 40028075)
-
-Zhen Yee (ID 40028478)
-
-Razvan Soos (ID 40035034)
+- Wu Wen Tang (ID 40028075)
+- Zhen Yee (ID 40028478)
+- Razvan Soos (ID 40035034)
 
 
 
