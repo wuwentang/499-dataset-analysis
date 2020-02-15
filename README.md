@@ -63,9 +63,14 @@ We want to be able to identify new restaurants based on this algorithm.
 
 ## References
 https://open.toronto.ca/dataset/ward-profiles-2018-47-ward-model/
+
 https://en.wikipedia.org/wiki/Apache_Spark
+
 https://en.wikipedia.org/wiki/Scikit-learn
+
 https://en.wikipedia.org/wiki/K-means_clustering#Algorithms
+
 https://towardsdatascience.com/understanding-k-means-clustering-in-machine-learning-6a6e67336aa1
+
 https://towardsdatascience.com/machine-learning-basics-with-the-k-nearest-neighbors-algorithm-6a6e71d01761
 
