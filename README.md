@@ -11,7 +11,7 @@ This project is a dataset analysis of the [Yelp dataset](https://www.yelp.com/da
 
 The Yelp dataset is a subset of businesses, reviews and user data, written on the yelp review website, designed to be used for personal or educational purposes. There are multiple ways of using the Yelp dataset, including predicting restaurant [closure](https://towardsdatascience.com/using-yelp-data-to-predict-restaurant-closure-8aafa4f72ad6), popularity, etc. based on various factors such as restaurant density, review count, rating, and price relative to surrounding restaurants. Additionally, the yelp dataset provides user information, reviews or tips users left to businesses which can be used to study a pattern between users and pictures of the food, drinks, menu or restaurant which can be used for image classification.
 
-## Introduction
+## I. Introduction
 A recommender system is an algorithm that provides relevant information to a given user by finding patterns or similarities in a dataset. The algorithm would rate the items and shows the user the items that they would rate highly. Some of the most famous examples of recommender systems are: Amazon, items are recommended to you that the algorithm deemed to be relevant, Spotify, which recommends relevant music to the user, or Netflix, which recommends certain movies based on user accounts. In class, we learned about content based and collaborative filtering recommender systems. This project will focus on collaborative filtering recommender systems, where the preference of a group of users is used to make recommendations to other users. An example of this would be recommending a restaurant to a user because their friend liked the restaurant. Therefore, user-user collaborative filtering is relevant to our project. The goal is to find a set of users whose ratings are similar to the given user's ratings, in order to be able to recommend restaurants to the given user. In other words, a restaurant will be recommended to a given user based on the fact that the same restaurant have been liked by other similar users.
 
 The objective of this research is to build a recommender system based on user ratings of restaurants. In our research, when two users 1 and 2 go to the same restaurants A and B, the similarity index of these two users is computed. Then, depending on the score, the system can recommend restaurant C to user 2 because these two users are similar in terms of the restaurants they visit. 
@@ -26,17 +26,15 @@ This project looks very similar to ours, they apply many of the algorithms that 
 
 This project is less relevant to our project, but still interesting because you can check how they convert the Yelp data. We will be converting the Yelp data from JSON to csv using pandas.
 
-## Materials & Methods
-### Datasets
-The datasets used are the Yelp Open dataset, and the Ward Profiles, 2018 (47-Ward Model), available from City Planning through the online Toronto Data, Research & Maps portal. There is an API available to extract the data from the Ward dataset.
+## II. Materials & Methods
+### Dataset
+The dataset used is the Yelp Open dataset. There are APIs available to extract the data from this dataset. This [website](https://www.kaggle.com/yelp-dataset/yelp-dataset/version/6#yelp_business_attributes.csv) gives a lot of information on the Yelp dataset. It's a great resource to view the information available.
 
-The _Yelp dataset_ contains many attributes such as hours, parking, availability, ambience, etc. It also contains full review text data including user_id that wrote the review, the business_id the review is written for, date, etc. It is around 8GB. The information that is interesting to us in the scope of this project is the following:
-- business "categories" ("Mexican", "Burgers", "Gastropubs")
-- "postal code": "94107",
-- "Latitude"
-- "longitude": -122.39612197,
-- "stars": 4.5,
-- "review_count": 1198,
+The _Yelp dataset_ contains many attributes such as hours, parking, availability, ambience, etc. It also contains full review text data including user_id that wrote the review, the business_id the review is written for, date, etc. It is around 10GB. The information that is interesting to us in the scope of this project is in the following JSON files:
+- yelp_academic_dataset_business.json
+- yelp_academic_dataset_review.json
+- yelp_academic_dataset_user.json
+The other files will be disregarded. 
 
 
 ### Technologies
@@ -68,6 +66,13 @@ Matrix factorization algorithm is used to solve issues with collaborative filter
 
 ALS is a matrix factorization algorithm and and is implemented in Spark. It is used for collaborative filtering with large data sets. In this project, it is applied because it scales well to large datasets and can solve the sparseness problem of the restaurants ratings data. [Here](https://towardsdatascience.com/prototyping-a-recommender-system-step-by-step-part-2-alternating-least-square-als-matrix-4a76c58714a1) is an example for implementing a minimum viable product (MVP) ALS recommender system.
 
+## III. Results
+
+
+## IV. Discussion
+
+
+## V. Conclusion
 
 
 ## References
@@ -84,6 +89,7 @@ https://towardsdatascience.com/understanding-k-means-clustering-in-machine-learn
 https://towardsdatascience.com/machine-learning-basics-with-the-k-nearest-neighbors-algorithm-6a6e71d01761
 
 Edited:
+
 https://towardsdatascience.com/how-to-build-a-simple-recommender-system-in-python-375093c3fb7d
 
 https://towardsdatascience.com/prototyping-a-recommender-system-step-by-step-part-2-alternating-least-square-als-matrix-4a76c58714a1
