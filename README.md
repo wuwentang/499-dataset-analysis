@@ -12,11 +12,19 @@ This project is a dataset analysis of the [Yelp dataset](https://www.yelp.com/da
 The Yelp dataset is a subset of businesses, reviews and user data, written on the yelp review website, designed to be used for personal or educational purposes. There are multiple ways of using the Yelp dataset, including predicting restaurant [closure](https://towardsdatascience.com/using-yelp-data-to-predict-restaurant-closure-8aafa4f72ad6), popularity, etc. based on various factors such as restaurant density, review count, rating, and price relative to surrounding restaurants. Additionally, the yelp dataset provides user information, reviews or tips users left to businesses which can be used to study a pattern between users and pictures of the food, drinks, menu or restaurant which can be used for image classification.
 
 ## Introduction
-It has been noticed that restaurants can have great or not so great success partially depending on the location where they open and that different restaurants have a broad type of reviews, whether positive or negative also partially depending on their location. Our hypothesis is that a restaurant is far more likely to have negative reviews and eventually fail given that it’s located in the wrong neighbourhood for its type. In other words, we're formulating an association rule between neighbourhood, restaurant types, and the review "stars" range. E.g. {neighborhood, restaurant type, (other types/features)} => review range 1-5*
+A recommender system is an algorithm that provides relevant information to a given user by finding patterns or similarities in a dataset. The algorithm would rate the items and shows the user the items that they would rate highly. Some of the most famous examples of recommender systems are: Amazon, items are recommended to you that the algorithm deemed to be relevant, Spotify, which recommends relevant music to the user, or Netflix, which recommends certain movies based on user accounts. In class, we learned about content based and collaborative filtering recommender systems. This project will focus on collaborative filtering recommender systems, where the preference of a group of users is used to make recommendations to other users. An example of this would be recommending a restaurant to a user because their friend liked the restaurant. Therefore, user-user collaborative filtering is relevant to our project. The goal is to find a set of users whose ratings are similar to the given user's ratings, in order to be able to recommend restaurants to the given user. In other words, a restaurant will be recommended to a given user based on the fact that the same restaurant have been liked by other similar users.
 
-The objective of this research is to determine the positive or negative impact that the location of a restaurant has given the type of the restaurant. In other words we’re interested in seeing whether or not, for example, an Italian restaurant will succeed better in an Italian neighbourhood compared to an Italian restaurant located in Chinatown or downtown. This will be done by studying the reviews of successful and now closed restaurants in different parts of town for multiple major cities such as Montreal, Toronto or New York. Another thing to consider would be if the location of the restaurant is near famous landmarks, schools, malls, parks, or other public infrastructures. We believe that would have influence on the success as well. A significant problem in this research is that tesides the reviews, additional data has to be taken into account and reasonably standardized, notably the fame of the restaurant itself and the fame of the chefs cooking there. What we mean by this is that a Gordon Ramsey Italian restaurant that opens near Chinatown could see far more success than any other Italian restaurant located near Chinatown and more than likely even some Italian restaurants open in Little Italy. Comparing restaurants owned by well known chefs or large franchises to a family owned restaurant whose owners have little to no experience in running a restaurant business won’t make for accurate data, therefore a scale for comparison between big names or between new owners will need to be created at first.
+The objective of this research is to build a recommender system based on user ratings of restaurants. In our research, when two users 1 and 2 go to the same restaurants A and B, the similarity index of these two users is computed. Then, depending on the score, the system can recommend restaurant C to user 2 because these two users are similar in terms of the restaurants they visit. 
 
-In regards to the related work, there have been hundreds of academic papers written using the Yelp dataset as well as many more projects made on the analysis of the dataset.
+In regards to the related work, there are many other projects using the Yelp dataset, papers written using the Yelp dataset, as well as other projects made on the analysis of the dataset. Some examples are discussed below:
+
+[Yelp recommendation](https://github.com/chanship/yelpRecommendation): Data mining is done with the Yelp dataset. They found the frequent itemsets in subsets of the Yelp dataset. They used Jaccard Similarity to identify similar user and business set. Then, they predicted the ratings/stars for the given user ids and business ids, an example of applying user-based collaborative filtering. 
+
+This project looks very similar to ours, they apply many of the algorithms that we learned in class, as well as a few that we have not heard about. 
+
+[SON implementation](https://github.com/manjar-cs/SON_Implementation): The SON algorithm (performs the Apriori algorithm) is implemented using the Apache Spark Framework. The goal of this project is to find frequent itemsets in two datasets: one simulated dataset(small1.csv,small2.csv), and one real-world dataset (generated from Yelp dataset). They want to apply the algorithm on large datasets more efficiently in a distributed environment.
+
+This project is less relevant to our project, but still interesting because you can check how they convert the Yelp data. We will be converting the Yelp data from JSON to csv using pandas.
 
 ## Materials & Methods
 ### Datasets
@@ -30,11 +38,6 @@ The _Yelp dataset_ contains many attributes such as hours, parking, availability
 - "stars": 4.5,
 - "review_count": 1198,
 
-The _2016 Ward profiles_ contain information on population by “age; households and dwelling types; families; language group; household tenure and period of construction; immigration and mobility; ethnic origin and visible minorities; education and labour force; income and shelter cost”. The information that is interesting to us in the scope of this project is the following:
-Migration, Mobility, and Languages
-- Area name
-- Latitude
-- Longitude 
 
 ### Technologies
 The technologies that will be used are Apache Spark, and scikit-learn.
@@ -48,17 +51,23 @@ _Scikit-learn_
 Scikit-learn is a machine learning library for Python. It has classification, regression and clustering algorithms including support vector machines, random forests, gradient boosting, k-means and DBSCAN. Scikit-learn integrates with other Python libraries: matplotlib and plotly for plotting, numpy for array vectorization, pandas dataframes, scipy, etc. 
 
 ### Algorithms
-_K-means Clustering_
+_Frequent Itemsets_
 
-k-means clustering is a machine learning algorithm, used in data science for cluster analysis. The goal of K-means to group similar data points together to find patterns; K-means looks for a number (k) of clusters in a dataset, which is a collection of data points aggregated by similarities.
+The goal of frequent itemsets is to find sets of items that appear frequently together in "baskets". Frequent itemsets are generated by a set of items that appear in a defined number of support threshold s. Frequent itemset mining leads to associations between items in large data sets. Once the frequent itemsets are generated, association rules can be formed in the format of {item A} => {item B}.
 
-In our case, k-means clustering will be used to separate types of restaurants, for example, family owned restaurants or chain restaurants. They will be separated, similar categories grouped together and compared. Similarly, certain ethnicity groups will also be separated in this way, but more thoughts will be put behind that later.
+In our case, frequent itemsets will be used to find frequent itemsets of restaurants per user. This can be used to find users who have similar tastes in restaurants, in user-based collaborative filtering. For example, 
+Items = {Boustan, Wienstein & Gavino's, Pho Lien, Amir, M4 Burritos}
+Support threshold = 3
+B1 = {B, W, P}, B2 = {B, A, M}, B3 = {A, M}, B4 = {B, P}, B5 = {B, P, A, M}, ...
+Frequent itemsets: {B}, {P}, {M}, {B, P}, {A, M}
 
-_Nearest neighbours_
 
-The k-nearest neighbors (KNN) algorithm is a supervised machine learning algorithm, used to solve both classification and regression problems. This algorithm relies on labeled input data to learn a function that will be able to produce a correct output when given new unlabeled data; it assumes that similar things exist near each other.
+_Alternating least Square (ALS)_
 
-We want to be able to identify new restaurants based on this algorithm.
+Matrix factorization algorithm is used to solve issues with collaborative filtering recommenders such as popularity bias,  cold-start problem, and scalability issue when more data is added to the data set. In a user-item interaction matrix, the data is also often sparse. For collaborative filtering, matrix factorization algorithms decompose the user-item interaction matrix into two matrices that are lower in dimension: one for the users, and one for the items.
+
+ALS is a matrix factorization algorithm and and is implemented in Spark. It is used for collaborative filtering with large data sets. In this project, it is applied because it scales well to large datasets and can solve the sparseness problem of the restaurants ratings data. [Here](https://towardsdatascience.com/prototyping-a-recommender-system-step-by-step-part-2-alternating-least-square-als-matrix-4a76c58714a1) is an example for implementing a minimum viable product (MVP) ALS recommender system.
+
 
 
 ## References
@@ -74,3 +83,15 @@ https://towardsdatascience.com/understanding-k-means-clustering-in-machine-learn
 
 https://towardsdatascience.com/machine-learning-basics-with-the-k-nearest-neighbors-algorithm-6a6e71d01761
 
+Edited:
+https://towardsdatascience.com/how-to-build-a-simple-recommender-system-in-python-375093c3fb7d
+
+https://towardsdatascience.com/prototyping-a-recommender-system-step-by-step-part-2-alternating-least-square-als-matrix-4a76c58714a1
+
+https://www.sciencedirect.com/topics/computer-science/frequent-itemsets
+
+https://www.edureka.co/blog/apriori-algorithm/#association-rules
+
+https://github.com/chanship/yelpRecommendation
+
+https://github.com/manjar-cs/SON_Implementation
