@@ -1,0 +1,5 @@
+This folder was used to place the yelp files which were edited in cleaner.py to create yelp_reviews_businesses.csv
+
+The business and the review datasets from yelp are necessary if one desires to reproduce or change the parsing work.
+
+The yelp_reviews_businesses.csv is all the reviews for open restaurants in Toronto.
