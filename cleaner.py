@@ -5,7 +5,7 @@ df_b = pd.read_json(business_json_path, lines=True)
 # Removing closed restaurants
 df_b = df_b[df_b['is_open']==1]
 # Keeping restaurants with more than 5 reviews
-df_b = df_b[df_b['review_count']>=10]
+df_b = df_b[df_b['review_count']>=50]
 # Removing data that isn't categorized as food,restaurants,fast food or bars
 df_b = df_b[df_b['categories'].str.contains(
               'Food|Restaurants',
