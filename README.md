@@ -33,9 +33,18 @@ The dataset used is the Yelp Open dataset. There are APIs available to extract t
 The _Yelp dataset_ contains many attributes such as hours, parking, availability, ambience, etc. It also contains full review text data including user_id that wrote the review, the business_id the review is written for, date, etc. It is around 10GB. The information that is interesting to us in the scope of this project is in the following JSON files:
 - yelp_academic_dataset_business.json
 - yelp_academic_dataset_review.json
-- yelp_academic_dataset_user.json
 
 The other files will be disregarded. 
+
+The dataset is cleaned up by first, filtering for restaurants only in the city of Toronto. There are nail salons and other businesses that were somehow included, so we removed everything that are not categorized as restaurants, food, fast food or bars. Out of those restaurants, we filtered by restaurants that are open. Then, the the JSON file was transformed and removed all the unnecessary columns, and linked it to the review file that was also edited. This results in a CSV file with business_id, city, name, stars, review stars, and user_id, where every business has all its reviews listed. Some lines were taken out because of the name syntax or special characters. To further reduce the dataset, we decided to keep restaurants with minimum review count of 50, there are now 290,900 lines. There are 1925 restaurants in the cleaned up dataset, which averages out to around 150 reviews per restaurant.
+
+
+
+So 150ish reviews per restaurant on average
+
+
+
+So now we have a csv file with business id, city, name, stars, review stars, user id where every business has all its reviews listed
 
 
 ### Technologies
