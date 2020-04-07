@@ -36,15 +36,7 @@ The _Yelp dataset_ contains many attributes such as hours, parking, availability
 
 The other files will be disregarded. 
 
-The dataset is cleaned up by first, filtering for restaurants only in the city of Toronto. There are nail salons and other businesses that were somehow included, so we removed everything that are not categorized as restaurants, food, fast food or bars. Out of those restaurants, we filtered by restaurants that are open. Then, the the JSON file was transformed and removed all the unnecessary columns, and linked it to the review file that was also edited. This results in a CSV file with business_id, city, name, stars, review stars, and user_id, where every business has all its reviews listed. Some lines were taken out because of the name syntax or special characters. To further reduce the dataset, we decided to keep restaurants with minimum review count of 50, there are now 290,900 lines. There are 1925 restaurants in the cleaned up dataset, which averages out to around 150 reviews per restaurant.
-
-
-
-So 150ish reviews per restaurant on average
-
-
-
-So now we have a csv file with business id, city, name, stars, review stars, user id where every business has all its reviews listed
+The dataset is cleaned up first, filtering for restaurants only in the city of Toronto. There are nail salons and other businesses that were somehow included, so we removed everything that are not categorized as restaurants, food, fast food or bars. Out of those restaurants, we filtered by restaurants that are open. Then, the the JSON file was transformed and removed all the unnecessary columns, and linked it to the review file that was also edited. This results in a CSV file with business_id, city, name, stars, review stars, and user_id, where every business has all its reviews listed. Some lines were taken out because of the name syntax or special characters. To further reduce the dataset, we decided to keep restaurants with minimum review count of 50, there are now 290,900 lines. There are 1925 restaurants in the cleaned up dataset, which averages out to around 150 reviews per restaurant.
 
 
 ### Technologies
@@ -81,7 +73,10 @@ Matrix factorization algorithm is used to solve issues with collaborative filter
 ALS is a matrix factorization algorithm and and is implemented in Spark. It is used for collaborative filtering with large data sets. In this project, it is applied because it scales well to large datasets and can solve the sparseness problem of the restaurants ratings data. [Here](https://towardsdatascience.com/prototyping-a-recommender-system-step-by-step-part-2-alternating-least-square-als-matrix-4a76c58714a1) is an example for implementing a minimum viable product (MVP) ALS recommender system.
 
 ## III. Results
+_Dataset analysis_
+A matrix with users and businesses will be a sparse matrix, because most users don't have many restaurant reviews. It's difficult to give recommendations to users that didn’t review many restaurants, because there is no data about what they like so we won’t make recommendations for those users. This is also true especially if the restaurants don’t have many reviews either.
 
+Technology comparison or implementation
 
 ## IV. Discussion
 
