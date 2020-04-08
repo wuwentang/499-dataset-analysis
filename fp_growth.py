@@ -13,7 +13,8 @@ spark = SparkSession \
     .config("spark.some.config.option", "some-value") \
     .getOrCreate()
 
-rdd = spark.sparkContext.textFile('data/test_data_review_businesses.csv')
+# rdd = spark.sparkContext.textFile('data/test_data_review_businesses.csv')
+rdd = spark.sparkContext.textFile('data/yelp_reviews_businesses.csv')
 
 # removing header
 header = rdd.first()
@@ -32,11 +33,11 @@ data_df = data_df.groupby('user_id').agg(F.collect_list('business_id'))
 data_df = data_df.withColumn("business_id_list", array_distinct("collect_list(business_id)"))
 
 # # Python API docs
-fpGrowth = FPGrowth(itemsCol="business_id_list", minSupport=0.5, minConfidence=0.6)
+fpGrowth = FPGrowth(itemsCol="business_id_list", minSupport=0.001, minConfidence=0.01)
 
 # # model = spark.sparkContext.parallelize(fpGrowth.fit(user_id_df), numSlices=1000)
 model = fpGrowth.fit(data_df)
 
 # # Display frequent itemsets
-model.freqItemsets.show(20, truncate=False)
+model.freqItemsets.orderBy([func.size("items"), "freq"], ascending=[0, 0]).show(20, truncate=False)
 
