@@ -33,7 +33,7 @@ data_df = data_df.groupby('user_id').agg(F.collect_list('business_id'))
 data_df = data_df.withColumn("business_id_list", array_distinct("collect_list(business_id)"))
 
 # # Python API docs
-fpGrowth = FPGrowth(itemsCol="business_id_list", minSupport=0.001, minConfidence=0.01)
+fpGrowth = FPGrowth(itemsCol="business_id_list", minSupport=0.001, minConfidence=0.5)
 model = fpGrowth.fit(data_df)
 
 # # Display frequent itemsets
@@ -43,3 +43,6 @@ model.freqItemsets.orderBy([func.size("items"), "freq"], ascending=[0, 0]).show(
 association = model.associationRules
 association.orderBy([func.size("antecedent"), "confidence"], ascending=[0,0]).show(20, truncate=False)
 
+transform = model.transform(data_df)
+transform = transform.drop("collect_list(business_id)")
+transform.orderBy([func.size("prediction")], ascending=[0,0]).show(20, truncate=False)
