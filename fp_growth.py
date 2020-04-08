@@ -34,10 +34,12 @@ data_df = data_df.withColumn("business_id_list", array_distinct("collect_list(bu
 
 # # Python API docs
 fpGrowth = FPGrowth(itemsCol="business_id_list", minSupport=0.001, minConfidence=0.01)
-
-# # model = spark.sparkContext.parallelize(fpGrowth.fit(user_id_df), numSlices=1000)
 model = fpGrowth.fit(data_df)
 
 # # Display frequent itemsets
 model.freqItemsets.orderBy([func.size("items"), "freq"], ascending=[0, 0]).show(20, truncate=False)
+
+# Association Rules
+association = model.associationRules
+association.orderBy([func.size("antecedent"), "confidence"], ascending=[0,0]).show(20, truncate=False)
 
