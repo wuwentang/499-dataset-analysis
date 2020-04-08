@@ -12,18 +12,27 @@ spark = SparkSession \
     .config("spark.some.config.option", "some-value") \
     .getOrCreate()
 
-df = spark.read.csv('data/test_data_review_businesses.csv', header=True)
+# remove duplicate restaurants
+def remove_duplicate(x):
+    x.drop_duplicates(keep=False, inplace=True)
+    return x.tolist()
 
-user_business_df = df.select(df['user_id'], df['business_id'])
-print(user_business_df.show())
+df = pd.read_csv('data/test_data_review_businesses.csv')
 
-user_id_df = user_business_df.groupby(func.col("user_id")).agg(lambda x: x.tolist())
-print(user_id_df.show())
+user_business_df = df[['user_id', 'business_id']]
 
+# group user_id with list of business_id
+user_id_df = user_business_df.groupby('user_id').agg(lambda x: remove_duplicate(x))
+print(user_id_df)
+
+# convert pandas df to spark df
+user_id_df = spark.createDataFrame(user_id_df.astype(list))
+
+user_id_df.show()
 # Python API docs
 fpGrowth = FPGrowth(itemsCol="business_id", minSupport=0.5, minConfidence=0.6)
 model = fpGrowth.fit(user_id_df)
 
 # Display frequent itemsets
-model.freqItemsets.show()
+model.freqItemsets.show(20, truncate=False)
 
