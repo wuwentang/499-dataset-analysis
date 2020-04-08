@@ -5,6 +5,7 @@ from pyspark.sql import Row
 from pyspark.ml.fpm import FPGrowth
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
+from pyspark.sql.functions import array_distinct
 
 spark = SparkSession \
     .builder \
@@ -27,8 +28,11 @@ data_rdd = data_rdd.map(lambda row: row).distinct()
 data_df = spark.createDataFrame(data_rdd)
 data_df = data_df.groupby('user_id').agg(F.collect_list('business_id'))
 
+# group restaurants with same name but different location together
+data_df = data_df.withColumn("business_id_list", array_distinct("collect_list(business_id)"))
+
 # # Python API docs
-fpGrowth = FPGrowth(itemsCol="collect_list(business_id)", minSupport=0.5, minConfidence=0.6)
+fpGrowth = FPGrowth(itemsCol="business_id_list", minSupport=0.5, minConfidence=0.6)
 
 # # model = spark.sparkContext.parallelize(fpGrowth.fit(user_id_df), numSlices=1000)
 model = fpGrowth.fit(data_df)
