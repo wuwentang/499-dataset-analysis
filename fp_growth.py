@@ -20,10 +20,11 @@ rdd = spark.sparkContext.textFile('data/yelp_reviews_businesses.csv')
 header = rdd.first()
 
 # filter header out and create user_id -> business_id rdd
-data_rdd = rdd.filter(lambda row: row != header).map(lambda row: Row(business_id=row.split(",")[0], user_id=row.split(",")[5]))
+data_rdd = rdd.filter(lambda row: row != header).map(lambda row: Row(business_id=row.split(",")[0], avg_stars=row.split(',')[3], user_stars=row.split(',')[4], user_id=row.split(",")[5]))
 
 # remove duplicate rows
 data_rdd = data_rdd.map(lambda row: row).distinct()
+data_rdd = data_rdd.filter(lambda row: row[1] <= row[2])
 
 # create DataFrame
 data_df = spark.createDataFrame(data_rdd)
@@ -33,7 +34,7 @@ data_df = data_df.groupby('user_id').agg(F.collect_list('business_id'))
 data_df = data_df.withColumn("business_id_list", array_distinct("collect_list(business_id)"))
 
 # # Python API docs
-fpGrowth = FPGrowth(itemsCol="business_id_list", minSupport=0.001, minConfidence=0.5)
+fpGrowth = FPGrowth(itemsCol="business_id_list", minSupport=0.001, minConfidence=0.001)
 model = fpGrowth.fit(data_df)
 
 # # Display frequent itemsets
@@ -45,4 +46,4 @@ association.orderBy([func.size("antecedent"), "confidence"], ascending=[0,0]).sh
 
 transform = model.transform(data_df)
 transform = transform.drop("collect_list(business_id)")
-transform.orderBy([func.size("prediction")], ascending=[0,0]).show(20, truncate=False)
+transform.orderBy([func.size("prediction")], ascending=[0,0]).show(20)
