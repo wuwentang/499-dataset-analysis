@@ -137,7 +137,10 @@ As we can see from Figure 4, a lot of users are being recommended to similar res
 <p align="center">Figure 4. Result of Transformation and Predictions (a more detailed prediction can be found in /FP-Growth-Predictions)
  
 ### IV.b. Alternating Least Square (ALS)
+In figure 5, we can see that certain users have strong first ratings, such as 9.285 or 11.425 whereas others have much lower ratings for the recommendations such as 1.402 or 2.539. The reasoning behind this discrepancy in results is that the system has a hard time recommending a restaurant with certainty to a user that has only 1 review. We’ve set the maximum number or restaurants recommended to 10 because besides a few exceptions such as food critics who have hundreds of reviews, the rating becomes too low for the recommendation to have any significance. An argument could have been made to lower the maximum recommendations to 5 or even 3 for users who already have a low rating on their first recommendation such as the 1.402 user mentioned previously. Alternatively, for better results and more relevance, users with less than 10 reviews could have been removed from the dataset to have much more precise recommendations and higher average rating across the board.
+
 <p align="center"><img src="/graphs/als_recommender.png" height="400" />
+<p align="center">Figure 5. Results of the ALS recommender for the first 10 users alphabetically
 
 ### IV.c. Limitations
 The limitations of this project is related to the dataset and the data that can be obtained by it. Most people who go to restaurants do not end up rating it, unless they had an  extremely unsatisfying experience. Therefore, the data is very sparse and difficult to recommend restaurants to different types of users. However, since Yelp has a search feature, maybe some implicit data collection can be done based on the user’s search history and saved restaurant collections, and develop a recommender system based on a hybrid of the data instead of purely on restaurant ratings.
