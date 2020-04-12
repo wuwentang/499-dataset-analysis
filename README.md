@@ -36,17 +36,14 @@ This project is less relevant to our project, but still interesting because you 
 
 ## II. Materials & Methods
 ### II.a. Dataset
-The dataset used is the Yelp Open dataset. There are APIs available to extract the data from this dataset. This [website](https://www.kaggle.com/yelp-dataset/yelp-dataset/version/6#yelp_business_attributes.csv) gives a lot of information on the Yelp dataset. It's a great resource to view the information available.
-
-The _Yelp dataset_ contains many attributes such as hours, parking, availability, ambience, etc. It also contains full review text data including user_id that wrote the review, the business_id the review is written for, date, etc. It is around 10GB. The information that is interesting to us in the scope of this project is in the following JSON files:
+The dataset used is the Yelp Open dataset. It contains many attributes such as hours, parking, availability, ambience, etc. It also contains full review text data including user_id that wrote the review, the business_id the review is written for, date, etc. It is around 10GB. The information that is interesting to us in the scope of this project is in the following JSON files:
 - yelp_academic_dataset_business.json
 - yelp_academic_dataset_review.json
 
 The other files will be disregarded. 
 
 Preparing the data
-The dataset is cleaned up first, filtering for restaurants only in the city of Toronto. There are nail salons and other businesses that were included, so everything that is not categorized as restaurants, food, fast food or bars were removed. Out of those restaurants, we filtered by restaurants that are open. Then, the JSON file was transformed and removed all the unnecessary columns, and linked it to the review file that was also edited. This results in a CSV file with the following column of every business that has all its reviews listed:
-
+The dataset is cleaned up first, filtering for only for open restaurants. There are nail salons and other businesses that were included, so everything that is not categorized as restaurants, food, fast food or bars were initially removed. Later on we also decided to remove fast food and bars since our dataset was more than big enough. We finally filtered the business file to only contain restaurants within Toronto and then dropped the columns that wouldn't serve any purpose. Next, we used chunks to parse the review file since it contains millions of reviews and it's easier on our system to use chunks. The datatypes were also identified to speed things up. As we were going through the file, we dropped everything besides the busines_id, user_id and the stars that we renamed to review star, not to create confusion with the actual stars of the restaurant. Finally everything was concated together to join each business with its reviews and create a file having the following header:
 - business_id
 - city
 - name
@@ -54,7 +51,7 @@ The dataset is cleaned up first, filtering for restaurants only in the city of T
 - review stars
 - user_id
 
-Some lines were taken out because of the name syntax or special characters. To further reduce the dataset, only restaurants with a minimum review count of 50 were kept, there are now 290,900 lines. There are 1925 restaurants in the cleaned up dataset, which averages to around 150 reviews per restaurant. The code relating to this can be found in `cleaner.py`.
+Some lines were taken out because of the name syntax or special characters. To further reduce the dataset, only restaurants with a minimum review count of 50 were kept, there are now 290,900 lines. There are 1925 restaurants in the cleaned up dataset and 80343 users, which averages to around 150 reviews per restaurant. The code relating to this can be found in `cleaner.py` and `counter.py`
 
 
 ### II.b. Technologies
