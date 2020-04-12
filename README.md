@@ -4,7 +4,7 @@
 
 - Wu Wen Tang (ID 40028075)
 - Zhen Yee (ID 40028478)
-- Razvan Soos (ID 40035034)
+- Razvan Soos (ID 40030524)
 
 ## Abstract
 This project is a dataset analysis of the [Yelp dataset](https://www.yelp.com/dataset), available to the public as JSON files. We will apply two techniques seen in the course using Apache Spark. The results will be discussed and interpreted.
