@@ -116,6 +116,8 @@ The value for minimum support, where an itemset is identified as “frequent”,
 
 _ALS_
 
+The values for the ALS function were chosen by trial and error, trying to optimize and find the lowest rmse possible. It was found that with a maxIter of 5 and a rank of 25, the best results are produced when redParam is 0.4, resulting in an rmse of 1.20. Considering how empty our matrix  is, as discussed previously, we judged that a 1.20 rmse is acceptable. Our system can take as parameter a numerical value as a max number of recommendations per user and returns the desired amount of recommendations for every user with their respective rating. Some ratings were found to be very low, whereas others were more acceptable. An example will be shown in discussion.
+
 ## IV. Discussion
 ### IV.a. Frequent itemsets
 In Figure 3, we can see that the confidence level is quite low with a max confidence level of `0.211206689655172414`. We think this is because over half the users reviewed only one restaurant, making the dataset of reviewed restaurants quite scattered for those users, meaning that each of those users reviewed different restaurants. 
