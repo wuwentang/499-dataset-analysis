@@ -137,6 +137,7 @@ As we can see from Figure 4, a lot of users are being recommended to similar res
 <p align="center">Figure 4. Result of Transformation and Predictions (a more detailed prediction can be found in /FP-Growth-Predictions)
  
 ### IV.b. Alternating Least Square (ALS)
+<p align="center"><img src="/graphs/als_recommender.png" height="400" />
 
 ### IV.c. Limitations
 The limitations of this project is related to the dataset and the data that can be obtained by it. Most people who go to restaurants do not end up rating it, unless they had an  extremely unsatisfying experience. Therefore, the data is very sparse and difficult to recommend restaurants to different types of users. However, since Yelp has a search feature, maybe some implicit data collection can be done based on the user’s search history and saved restaurant collections, and develop a recommender system based on a hybrid of the data instead of purely on restaurant ratings.
