@@ -109,8 +109,9 @@ _ALS_
 
 ## IV. Discussion
 ### IV.a. Frequent itemsets
-In Figure 2, we can see that the confidence level is quite low with a max confidence level of 0.211206689655172414. We think this is because over half the users reviewed only one restaurant, making the dataset of reviewed restaurants quite scattered for those users, meaning that each of those users reviewed different restaurants. 
-As we can see from Figure 3, a lot of users are being recommended to similar restaurants by the recommender system, more noticeably the restaurant with business_id RtUvSWO_UZ8V3Wpj0n077w. We believe, again, this is due to over half the users only having reviewed a single restaurant. This means that over half the users are depending on the second half to have reviewed more restaurants than the first half. This makes it difficult for our recommender system to recommend a restaurant to users.
+In Figure 2, we can see that the confidence level is quite low with a max confidence level of `0.211206689655172414`. We think this is because over half the users reviewed only one restaurant, making the dataset of reviewed restaurants quite scattered for those users, meaning that each of those users reviewed different restaurants. 
+
+As we can see from Figure 3, a lot of users are being recommended to similar restaurants by the recommender system, more noticeably the restaurant with `business_id` `RtUvSWO_UZ8V3Wpj0n077w`. We believe, again, this is due to over half the users only having reviewed a single restaurant. This means that over half the users are depending on the second half to have reviewed more restaurants than the first half. This makes it difficult for our recommender system to recommend a restaurant to users.
 
 <p align="center"><img src="graphs/result_of_frequent_itemset.png" height="400" />
  
