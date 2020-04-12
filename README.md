@@ -94,6 +94,9 @@ The code for our ALS implementation can be found in `/ALS_spark.py`
 ### III.a. Dataset analysis 
 A matrix with users and businesses is a sparse matrix, because most users don't have many restaurant reviews. As seen by the graph below, most users have only 1 review.
 
+<p align="center">Figure 1. Review per person
+
+<p align="center"><img src="/graphs/review_per_person_max20.png" height="400" />
 
 It's difficult to give recommendations to users that didn’t review many restaurants, because there is no data about what they like so we won’t make recommendations for those users. This is also true especially if the restaurants don’t have many reviews either.
 
@@ -108,6 +111,18 @@ _ALS_
 ### IV.a. Frequent itemsets
 In Figure 2, we can see that the confidence level is quite low with a max confidence level of 0.211206689655172414. We think this is because over half the users reviewed only one restaurant, making the dataset of reviewed restaurants quite scattered for those users, meaning that each of those users reviewed different restaurants. 
 As we can see from Figure 3, a lot of users are being recommended to similar restaurants by the recommender system, more noticeably the restaurant with business_id RtUvSWO_UZ8V3Wpj0n077w. We believe, again, this is due to over half the users only having reviewed a single restaurant. This means that over half the users are depending on the second half to have reviewed more restaurants than the first half. This makes it difficult for our recommender system to recommend a restaurant to users.
+
+<p align="center"><img src="graphs/result_of_frequent_itemset.png" height="400" />
+ 
+<p align="center">Figure 2. Result of Frequent Itemset
+
+<p align="center"><img src="/graphs/result_association_rule.png" height="400" />
+
+<p align="center">Figure 3. Result of Association Rule
+
+<p align="center"><img src="graphs/result_of_transformation.png" height="400" />
+ 
+<p align="center">Figure 4. Result of Transformation and Predictions (a more detailed prediction can be found in /FP-Growth-Predictions)
  
 ### IV.b. Alternating Least Square (ALS)
 
