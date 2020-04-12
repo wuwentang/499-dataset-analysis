@@ -67,7 +67,7 @@ Pandas is a python library designed for data analysis. It provides high-performa
 
 _Matplotlib_
 
-Matplotlib is a plotting library for Python and NumPy. It is designed to function a bit like matlab and to plot figures given code. In our project, it was used to showcase what our final dataset looked like and to help us understand what we're working with. The code to plot our graphs can be found in `graphs.py` and the graphsthat were produced can be found in the folder (graphs)[https://github.com/wuwentang/499-dataset-analysis/tree/master/graphs] 
+Matplotlib is a plotting library for Python and NumPy. It is designed to function a bit like matlab and to plot figures given code. In our project, it was used to showcase what our final dataset looked like and to help us understand what we're working with. The code to plot our graphs can be found in `graphs.py` and the graphsthat were produced can be found in the folder [graphs](https://github.com/wuwentang/499-dataset-analysis/tree/master/graphs)
 
 ### II.c. Algorithms
 _Frequent Itemsets_
