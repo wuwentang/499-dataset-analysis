@@ -55,12 +55,19 @@ Some lines were taken out because of the name syntax or special characters. To f
 
 
 ### II.b. Technologies
-The technologies that will be used is Apache Spark.
+The technologies that will be used are Apache Spark, Pandas and Matplotlib.
 
 _Apache Spark_
 
-Apache Spark is built around RDDs, a dataset distributed over a cluster of machines. It was developed to overcome the limitations of MapReduce cluster computing model; and extends the model. Spark is more efficient in both iterative algorithms, and exploratory data analysis (e.g. the repeated database-style querying of data). Spark has in-memory cluster computing, which increases the processing speed of an application. Spark automatically distributes the data in RDDs across clusters and parallelizes the data.
+Apache Spark is built around RDDs, a dataset distributed over a cluster of machines. It was developed to overcome the limitations of MapReduce cluster computing model; and extends the model. Spark is more efficient in both iterative algorithms, and exploratory data analysis (e.g. the repeated database-style querying of data). Spark has in-memory cluster computing, which increases the processing speed of an application. Spark automatically distributes the data in RDDs across clusters and parallelizes the data. The core of our algorithms reside on spark.
 
+_Pandas_
+
+Pandas is a python library designed for data analysis. It provides high-performance, easy to use structures and data analysis tools. In our project, it was used to extract the relevant data out of the dataset and to rearrange the data in order to be able to perform algorithms on it and to understand it once those algorithms are performed.
+
+_Matplotlib_
+
+Matplotlib is a plotting library for Python and NumPy. It is designed to function a bit like matlab and to plot figures given code. In our project, it was used to showcase what our final dataset looked like and to help us understand what we're working with. The code to plot our graphs can be found in `graphs.py` and the graphs are in the folder "graphs"
 
 ### II.c. Algorithms
 _Frequent Itemsets_
