@@ -38,7 +38,7 @@ predictions = model.transform(test)
 rmse = evaluator.evaluate(predictions)
 print(str(rmse))
 
-recommendations = model.recommendForAllUsers(20).toPandas()
+recommendations = model.recommendForAllUsers(10).toPandas()
 
 #taking out the indexes to see recommendations in terms of business id
 recs = model.recommendForAllUsers(10).toPandas()
