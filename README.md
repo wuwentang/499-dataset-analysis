@@ -107,7 +107,7 @@ A matrix with users and businesses is a sparse matrix, because most users don't 
 
 <p align="center"><img src="/graphs/review_per_person_max20.png" height="400" />
 
-It's difficult to give recommendations to users that didn’t review many restaurants, because there is no data about what they like so we won’t make recommendations for those users. This is also true especially if the restaurants don’t have many reviews either.
+Since we have 80343 users and 1925 restaurants, the matrix of users restaurants has 154660275 squares, of which only 290900 are filled, which makes 99.81% of the matrix empty. It's difficult to give recommendations to users that didn’t review many restaurants, because there is no data about what they like. This is also true especially if the restaurants don’t have many reviews either. We attempted giving suggestions to users with 1 or 2 reviews but the confidence of the algorithm is very low for them, therefore for the frequent itemsets algorithm, we decided to remove users with too little reviews.
 
 ### III.b. Technology comparison or implementation
 _Frequent itemsets_
