@@ -80,6 +80,13 @@ B1 = {B, W, P}, B2 = {B, A, M}, B3 = {A, M}, B4 = {B, P}, B5 = {B, P, A, M}, ...
 
 Frequent itemsets: {B}, {P}, {M}, {B, P}, {A, M}
 
+For our project, we filtered the data with business_id, user_id, avg_star, and reviewer_star which will allow us to further filter the data where a user reviews a restaurant that is higher than or equal to the average star of the restaurant.
+
+This was an assumption we made to filter out bad reviews, because we want our recommender system to recommend restaurants to users who had a positive experience at the restaurant. 
+
+The code for our Frequent Itemsets implementation can be found in `/fp_growth.py`.
+
+
 
 _Alternating least Square (ALS)_
 
